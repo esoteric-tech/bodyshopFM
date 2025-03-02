@@ -15,8 +15,8 @@ export default function AnimatedBanner() {
   }, []);
   
   return (
-    <div className="w-full bg-black py-4 px-0">
-      <div className="container mx-auto">
+    <div className="w-full bg-black py-4">
+      <div className="container mx-auto px-4">
         <h2 
           className="text-white text-3xl md:text-4xl font-bold text-center animated-banner-text"
           key={currentIndex}
