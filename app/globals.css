@@ -129,6 +129,7 @@ body {
 .carousel-container {
   height: 600px !important;
   position: relative !important;
+  border: 2px solid white !important;
 }
 
 /* Carousel images */
@@ -146,10 +147,49 @@ button[aria-label*="next"],
   top: 50% !important;
   transform: translateY(-50%) !important;
   z-index: 10 !important;
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: #E6B800 !important;
+  color: white !important;
   width: 40px !important;
   height: 40px !important;
-  border-radius: 50% !important;
+  border-radius: 0 !important;
+  border: 2px solid white !important;
+  box-shadow: 
+    inset 1px 1px 0 0 rgba(255, 255, 255, 0.5),
+    inset -1px -1px 0 0 rgba(0, 0, 0, 0.2) !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+button[aria-label*="prev"]:hover,
+button[aria-label*="next"]:hover,
+.carousel-prev:hover,
+.carousel-next:hover {
+  background-color: white !important;
+  color: #E6B800 !important;
+  transform: translateY(-50%) scale(1.05) !important;
+}
+
+button[aria-label*="prev"]:active,
+button[aria-label*="next"]:active,
+.carousel-prev:active,
+.carousel-next:active {
+  background-color: #d0d0d0 !important;
+  box-shadow: 
+    inset 1px 1px 0 0 rgba(0, 0, 0, 0.2),
+    inset -1px -1px 0 0 rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-50%) scale(0.98) !important;
+}
+
+button[aria-label*="prev"] {
+  left: 10px !important;
+}
+
+button[aria-label*="next"] {
+  right: 10px !important;
 }
 
 /* Logo sizing */
@@ -168,4 +208,328 @@ button[aria-label*="next"],
   10% { opacity: 1; transform: translateY(0); }
   90% { opacity: 1; transform: translateY(0); }
   100% { opacity: 0; transform: translateY(-10px); }
+}
+
+.hatched-border {
+  background-image: repeating-linear-gradient(
+    45deg,
+    black,
+    black 2px,
+    transparent 2px,
+    transparent 10px
+  );
+  background-clip: content-box;
+  padding: 2px;
+}
+
+.checkered-border {
+  border: 10px solid;
+  border-image: 
+    repeating-conic-gradient(
+      black 0% 25%, 
+      white 0% 50%
+    ) 
+    1;
+  position: relative;
+  z-index: 0;
+}
+
+@keyframes drawLineFromLeft {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes drawLineFromRight {
+  0% {
+    width: 0;
+    right: 0;
+    left: auto;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    right: 0;
+    left: auto;
+    opacity: 1;
+  }
+}
+
+.racing-border {
+  position: relative;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  z-index: 1;
+}
+
+.racing-border::before,
+.racing-border::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  background-color: white;
+  z-index: 10;
+}
+
+.racing-border::before {
+  top: 0;
+  left: 0;
+  animation: drawLineFromLeft 1.2s ease-out forwards;
+}
+
+.racing-border::after {
+  bottom: 0;
+  right: 0;
+  animation: drawLineFromRight 1.2s ease-out 0.3s forwards;
+}
+
+@keyframes logo-float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-logo-float {
+  animation: logo-float 3s ease-in-out infinite;
+}
+
+@keyframes drawLineFromTop {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.vertical-border {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  background-color: white;
+  animation: drawLineFromTop 1.5s ease-out 0.6s forwards;
+  z-index: 10;
+}
+
+.separator-line {
+  background-color: white;
+  width: 0;
+  animation: drawLineFromLeft 1.2s ease-out 0.9s forwards;
+  position: relative;
+  z-index: 10;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes drawBorder {
+  0% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: white;
+  }
+}
+
+.model-container {
+  border-color: transparent;
+  animation: drawBorder 0.8s ease-out 3.2s forwards;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+  animation-delay: 0.8s;
+}
+
+/* Social media button hover effect */
+button.text-xl.font-bold {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+button.text-xl.font-bold:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Windows 95 style button */
+.win95-button {
+  background-color: #c0c0c0 !important;
+  border: none !important;
+  color: black !important;
+  font-family: 'Arial', sans-serif !important;
+  box-shadow: 
+    inset -1px -1px 0 0 #0a0a0a,
+    inset 1px 1px 0 0 #ffffff,
+    inset -2px -2px 0 0 #808080,
+    inset 2px 2px 0 0 #dfdfdf !important;
+  text-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 6px 12px !important;
+}
+
+.win95-button:hover {
+  background-color: #d0d0d0 !important;
+  box-shadow: 
+    inset -1px -1px 0 0 #0a0a0a,
+    inset 1px 1px 0 0 #ffffff,
+    inset -2px -2px 0 0 #808080,
+    inset 2px 2px 0 0 #dfdfdf !important;
+  transform: translateY(0) !important;
+}
+
+.win95-button:active {
+  background-color: #b0b0b0 !important;
+  box-shadow: 
+    inset 1px 1px 0 0 #0a0a0a,
+    inset -1px -1px 0 0 #ffffff,
+    inset 2px 2px 0 0 #808080,
+    inset -2px -2px 0 0 #dfdfdf !important;
+  transform: translateY(1px) !important;
+}
+
+/* Windows 95 Window Styling - Simplified with yellow/white theme */
+.win95-window-header {
+  width: 100%;
+  background-color: #E6B800;
+  box-shadow: 
+    inset 1px 1px 0 0 #ffffff,
+    inset -1px -1px 0 0 rgba(0, 0, 0, 0.3);
+  font-family: 'NeueKaine', Arial, sans-serif;
+  color: white;
+  margin-bottom: 0;
+}
+
+.win95-title-bar {
+  background-color: #E6B800;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 14px;
+  height: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.win95-title-text {
+  padding-left: 4px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.win95-window-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.win95-window-button {
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #E6B800;
+  font-size: 10px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.win95-menu-bar {
+  display: none; /* Hide the menu bar for a more minimal look */
+}
+
+.win95-window-content {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Animation for the right-hand side border */
+@keyframes fadeInBorder {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeInBorder 0.8s ease-out forwards;
+}
+
+/* Windows 95 Folder Tab Styles */
+.folder-tab {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: #E6B800;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid white;
+  border-bottom: none;
+  position: relative;
+  z-index: 5;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 2px -2px 0 rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s;
+}
+
+.folder-tab:hover {
+  background-color: #FFD700;
+}
+
+.folder-tab:active {
+  background-color: #D4A700;
+  transform: translateY(1px);
 }
